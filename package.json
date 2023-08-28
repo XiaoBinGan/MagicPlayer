@@ -2,26 +2,25 @@
   "name": "magicPlayer",
   "version": "1.0.0",
   "description": "A Websocket player based on react",
+  "license": "MPL-2.0",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "start": "npm run dev",
-    "dev": "dumi dev",
     "build": "father build",
     "build:watch": "father dev",
+    "dev": "dumi dev",
     "docs:build": "dumi build",
-    "prepare": "husky install && dumi setup",
     "doctor": "father doctor",
     "lint": "npm run lint:es && npm run lint:css",
     "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
     "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
-    "prepublishOnly": "father doctor && npm run build"
+    "prepare": "husky install && dumi setup",
+    "prepublishOnly": "father doctor && npm run build",
+    "start": "npm run dev"
   },
-  "authors": [],
-  "license": "MIT",
-  "files": [
-    "dist"
-  ],
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
@@ -44,12 +43,13 @@
       "prettier --parser=typescript --write"
     ]
   },
-  "publishConfig": {
-    "access": "public"
-  },
-  "peerDependencies": {
-    "react": ">=16.9.0",
-    "react-dom": ">=16.9.0"
+  "dependencies": {
+    "@ant-design/icons": "^5.2.5",
+    "@types/jquery": "^3.5.16",
+    "@types/lodash-es": "^4.17.8",
+    "jquery": "^3.7.0",
+    "lodash-es": "^4.17.21",
+    "moment": "^2.29.4"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
@@ -69,12 +69,14 @@
     "react-dom": "^18.0.0",
     "stylelint": "^14.9.1"
   },
-  "dependencies": {
-    "@ant-design/icons": "^5.2.5",
-    "@types/jquery": "^3.5.16",
-    "@types/lodash-es": "^4.17.8",
-    "jquery": "^3.7.0",
-    "lodash-es": "^4.17.21",
-    "moment": "^2.29.4"
-  }
+  "peerDependencies": {
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "authors": [
+    "wujiahao zhangbingjian"
+  ]
 }
