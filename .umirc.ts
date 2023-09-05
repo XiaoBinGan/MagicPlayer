@@ -4,7 +4,7 @@ export default defineConfig({
   devServer: {
     port: 8002,
   },
-  title: 'magic-viodeplayer',
+  title: 'magic-videoplayer',
   mode: 'site',
   description: '基于React的UI组件库',
   theme: {

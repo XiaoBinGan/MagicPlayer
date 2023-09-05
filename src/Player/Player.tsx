@@ -1,8 +1,5 @@
-import {
-  CameraOutlined,
-  PlayCircleOutlined,
-  RedoOutlined,
-} from '@ant-design/icons';
+//@ts-nocheck
+import { CameraOutlined, PlayCircleOutlined, RedoOutlined } from '@ant-design/icons';
 import fullscreenIcon from './images/fullscreen.png';
 import pauseIcon from './images/pause.png';
 import playIcon from './images/play.png';
@@ -29,10 +26,7 @@ import {
   WsPlayerState,
 } from './PlayerInterface';
 
-export default class PlayerCon extends Component<
-WsPlayerProps,
-WsPlayerState
-> {
+export default class PlayerCon extends Component<WsPlayerProps, WsPlayerState> {
   public videoElement!: HTMLVideoElement;
   public pointCanvas!: HTMLCanvasElement;
   public videoCanvas!: HTMLCanvasElement;
@@ -76,7 +70,7 @@ WsPlayerState
     };
   }
   componentDidMount() {
-    const { url,  onRef, autoPlay } = this.props;
+    const { url, onRef, autoPlay } = this.props;
     const { id } = this.state;
     this.eventListen();
 
@@ -84,15 +78,9 @@ WsPlayerState
       onRef(this);
     }
 
-    const videoElement = document.getElementById(
-      `newPlayer${id}`,
-    ) as HTMLVideoElement;
-    const pointCanvas = document.getElementById(
-      `point${id}`,
-    ) as HTMLCanvasElement;
-    const videoCanvas = document.getElementById(
-      `canvas${id}`,
-    ) as HTMLCanvasElement;
+    const videoElement = document.getElementById(`newPlayer${id}`) as HTMLVideoElement;
+    const pointCanvas = document.getElementById(`point${id}`) as HTMLCanvasElement;
+    const videoCanvas = document.getElementById(`canvas${id}`) as HTMLCanvasElement;
     if (!videoElement || !videoCanvas) {
       console.log('未初始化Video元素!');
       return;
@@ -114,9 +102,7 @@ WsPlayerState
     }
   }
 
-  componentDidUpdate(
-    prevProps: Readonly<WsPlayerProps>,
-  ): void {
+  componentDidUpdate(prevProps: Readonly<WsPlayerProps>): void {
     if (prevProps.url !== this.props.url) {
       this.reloadFlg = false;
       this.urlChangeTime && clearTimeout(this.urlChangeTime);
@@ -166,13 +152,7 @@ WsPlayerState
   /** 初始化 并播放 */
   init = (delayTime?: number) => {
     const { id } = this.state;
-    const {
-      url,
-      onError,
-      reconnection,
-      onPlay,
-      delayTimeStamp,
-    } = this.props;
+    const { url, onError, reconnection, onPlay, delayTimeStamp } = this.props;
     const reloadFlg = this.reloadFlg;
     const videoEle = this.videoElement;
 
@@ -212,13 +192,7 @@ WsPlayerState
         });
       };
       videoEle.onplay = () => {
-        onPlay &&
-          onPlay(
-            videoEle.videoWidth,
-            videoEle.videoHeight,
-            '264',
-            'primordial',
-          );
+        onPlay && onPlay(videoEle.videoWidth, videoEle.videoHeight, '264', 'primordial');
         this.startCacheCheckLoop();
       };
 
@@ -290,11 +264,7 @@ WsPlayerState
   /** 添加鼠标进入监听  */
   eventListen = () => {
     const { id } = this.state;
-    [
-      'fullscreenchange',
-      'webkitfullscreenchange',
-      'mozfullscreenchange',
-    ].forEach((item) => {
+    ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange'].forEach((item) => {
       window.addEventListener(item, () => this.fullscreenchange());
     });
     this.computedFontSize();
@@ -310,8 +280,7 @@ WsPlayerState
     this.computedFontSize();
     this.calcCavasStyles();
 
-    const fullScreenPlayer =
-      document.fullscreenElement === this.state.playerRef?.current;
+    const fullScreenPlayer = document.fullscreenElement === this.state.playerRef?.current;
     fullScreenPlayer && console.log('播放器全屏', this.state.id);
     this.state.fullscreen !== fullScreenPlayer &&
       this.props.onFullChange &&
@@ -323,8 +292,7 @@ WsPlayerState
 
   /**提示文字大小 */
   computedFontSize = () => {
-    const playerWidth =
-      this.state.playerRef?.current?.getBoundingClientRect().width;
+    const playerWidth = this.state.playerRef?.current?.getBoundingClientRect().width;
     this.setState({
       fontSizeType: computedFontSizeFun(playerWidth),
     });
@@ -421,17 +389,15 @@ WsPlayerState
         e.stopPropagation();
         if (e.which === 1) {
           !this.state.showContextMenu && this.pause();
-          this.state.showContextMenu &&
-            this.setState({ showContextMenu: false });
+          this.state.showContextMenu && this.setState({ showContextMenu: false });
         } else if (e.which === 3) {
-          const scrollTop = $(window).scrollTop() || 100
-          this.setState({ showContextMenu: true },()=>{
+          const scrollTop = $(window).scrollTop() || 100;
+          this.setState({ showContextMenu: true }, () => {
             $(`#newPlayerBox${id} .PlayerContextMenu`).css({
               left: e.pageX + 10,
               top: e.pageY - (scrollTop + 10),
             });
           });
-          
         }
       });
       $(document).on('click', () => {
@@ -471,13 +437,7 @@ WsPlayerState
       this.setState({
         mediaInfo: { width: video.videoWidth, height: video.videoHeight },
       });
-      onPlay &&
-        onPlay(
-          video.videoWidth,
-          video.videoHeight,
-          videoPattern,
-          'hardwareDecoding',
-        );
+      onPlay && onPlay(video.videoWidth, video.videoHeight, videoPattern, 'hardwareDecoding');
     } else {
       this.setPointCanvasDOMStyle(mediaInfo.width, mediaInfo.height);
       const ratio = this.computeTextElementFontSizeRatio();
@@ -486,23 +446,20 @@ WsPlayerState
         width: mediaInfo.width,
         height: mediaInfo.height,
       });
-      onPlay &&
-        onPlay(mediaInfo.width, mediaInfo.height, '265', 'softwareDecoding');
+      onPlay && onPlay(mediaInfo.width, mediaInfo.height, '265', 'softwareDecoding');
     }
   };
 
   calcCavasStyles = () => {
     setTimeout(() => {
       // 兼容一下机器全屏比较慢的情况
-      const screenHeight =
-        this.state.playerRef?.current?.getBoundingClientRect().height;
+      const screenHeight = this.state.playerRef?.current?.getBoundingClientRect().height;
       // console.log(this.state.fullscreen, screenHeight, this.state.mediaInfo.height);
       screenHeight &&
         this.setState({
           canvasStyles: {
             width: 'auto',
-            height:
-              screenHeight < this.state.mediaInfo.height ? 'auto' : '100%',
+            height: screenHeight < this.state.mediaInfo.height ? 'auto' : '100%',
           },
         });
     }, 1500);
@@ -511,8 +468,7 @@ WsPlayerState
   /** 底部控制栏 */
   renderControls = () => {
     const { id, showControl, status } = this.state;
-    const { extra, closeControlBar,  banfullscreen } =
-      this.props;
+    const { extra, closeControlBar, banfullscreen } = this.props;
     return (
       <div
         className="playerControls"
@@ -559,11 +515,7 @@ WsPlayerState
               <CameraOutlined className="snapshotIcon" />
             </div>
           )}
-          {!!extra && (
-            <div className="extra">
-              {extra instanceof Function ? extra() : extra}
-            </div>
-          )}
+          {!!extra && <div className="extra">{extra instanceof Function ? extra() : extra}</div>}
         </div>
       </div>
     );
@@ -620,8 +572,7 @@ WsPlayerState
         canvasCtx?.drawImage(pointImage, 0, 0, canvas.width, canvas.height);
 
         if (dataType === 'blob') {
-          callback &&
-            canvas.toBlob(callback, fmt || 'image/jpeg', quality || 1);
+          callback && canvas.toBlob(callback, fmt || 'image/jpeg', quality || 1);
         } else {
           dataUrl = canvas.toDataURL(fmt || 'image/jpeg', quality || 1); //转url
           callback && callback(dataUrl);
@@ -685,7 +636,7 @@ WsPlayerState
   componentWillUnmount() {
     const { id } = this.state;
     //@ts-ignore
-    this.state.status = 'pause'; 
+    this.state.status = 'pause';
     console.log('停止');
     $(`#newPlayerBox${id}`).off('mouseover mouseout');
     $(`#playerControls${id}`).off('mouseover mouseout');
@@ -697,14 +648,7 @@ WsPlayerState
   }
 
   render() {
-    const {
-      width,
-      height,
-      videoClass,
-      canvasClass,
-      showVideoNtp,
-      emptyurlPrompt,
-    } = this.props;
+    const { width, height, videoClass, canvasClass, showVideoNtp, emptyurlPrompt } = this.props;
     const {
       id,
       status,
@@ -738,9 +682,7 @@ WsPlayerState
           height={1080}
           style={fullscreen ? canvasStyles : {}}
         />
-        <div
-          className={`waterMarkClass ${fullscreen ? 'fullwaterMarkClass' : ''}`}
-        >
+        <div className={`waterMarkClass ${fullscreen ? 'fullwaterMarkClass' : ''}`}>
           {this.renderControls()}
           {showVideoNtp && this.renderVideoTime()}
           <video
@@ -748,9 +690,9 @@ WsPlayerState
             loop
             playsInline
             autoPlay
-            className={`${
-              videoType === 'softwareDecoding' ? 'playerHide' : ''
-            } ${videoClass || ''}`}
+            className={`${videoType === 'softwareDecoding' ? 'playerHide' : ''} ${
+              videoClass || ''
+            }`}
             id={`newPlayer${id}`}
             crossOrigin="anonymous"
           ></video>

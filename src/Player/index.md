@@ -16,7 +16,7 @@ nav:
 
 ```tsx
 import React, { useEffect, useState } from 'react';
-import { Player } from 'magic-viodeplayer';
+import { Player } from 'magic-videoplayer';
 
 const Play = () => {
   const [url, setUrl] = useState('');
