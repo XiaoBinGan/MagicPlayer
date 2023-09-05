@@ -56,7 +56,7 @@ const Play = () => {
 export default () => <Play />;
 ```
 
-## API
+## API 说明
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
