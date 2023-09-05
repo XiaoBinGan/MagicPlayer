@@ -1,8 +1,9 @@
+//@ts-nocheck
 import copy from 'copy-to-clipboard';
+
 import { CopyOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import React from 'react';
 import { videoHeadInfo } from './PlayerInterface';
-
 
 export function getChromeVersion() {
   const versionInfo = navigator.userAgent.split(' ');
@@ -32,7 +33,7 @@ export function videoCanPlay265() {
 
 export const videInfoKey = ['radar_time:', 'video_time:', 'video_count:'];
 
-export const fullElement = (playerBox:any) => {
+export const fullElement = (playerBox: any) => {
   if (document.fullscreenElement === playerBox) {
     if (document.exitFullscreen) {
       document.exitFullscreen();
@@ -54,9 +55,9 @@ export const computedFontSizeFun = (width: number) => {
   }
 };
 
-export const setValidObjectTexts = (texts:any) => {
+export const setValidObjectTexts = (texts: any) => {
   if (Array.isArray(texts) === false) return [];
-  return texts.map((text:any) => {
+  return texts.map((text: any) => {
     if ('value' in text === false) {
       return { key: text.key, value: '-' };
     } else {
@@ -69,10 +70,10 @@ export const setValidObjectTexts = (texts:any) => {
 };
 
 export const renderVideoInfoElement = (
-  videoInfo:any,
-  showVideoInfoPanel:any,
-  closeVideoInfoPanel:any,
-  Version:any,
+  videoInfo: any,
+  showVideoInfoPanel: any,
+  closeVideoInfoPanel: any,
+  Version: any,
 ) => {
   if (showVideoInfoPanel) {
     const infoKeys = Object.keys(videoInfo);
@@ -105,7 +106,7 @@ export const renderVideoInfoElement = (
   return null;
 };
 
-export const renderContentMenuElement = (url: string, showVideoInfoPanel:any) => {
+export const renderContentMenuElement = (url: string, showVideoInfoPanel: any) => {
   return (
     <div className={`PlayerContextMenu`}>
       <div

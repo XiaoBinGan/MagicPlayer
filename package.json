@@ -1,7 +1,6 @@
 {
-  "private": false,
-  "name": "magic-viodeplayer",
-  "version": "2.0.0",
+  "name": "magic-videoplayer",
+  "version": "1.0.4",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "ANALYZE=1 dumi build",
@@ -15,6 +14,7 @@
   },
   "module": "es/index.js",
   "typings": "es/index.d.ts",
+  "private": false,
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
@@ -51,7 +51,7 @@
     "prettier": "^2.2.1",
     "yorkie": "^2.0.0"
   },
-  "license": "MIT",
+  "license": "MPL",
   "sideEffects": [
     "*.less",
     "*.css",
@@ -66,5 +66,6 @@
   },
   "files": [
     "es"
-  ]
+  ],
+  "author":"wujiahao , zhangbingjian"
 }

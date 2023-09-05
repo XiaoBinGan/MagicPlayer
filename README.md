@@ -10,8 +10,6 @@ npm i magic-videoplayer --save
 yarn add magic-videoplayer
 ```
 
-![Alt text](image.png)
-
 # Player 播放器
 
 视频播放器
