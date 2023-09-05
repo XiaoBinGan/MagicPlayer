@@ -16,10 +16,10 @@ nav:
 
 ```tsx
 import React, { useEffect, useState } from 'react';
-import {Player} from 'magicPlayer';
+import {Player} from 'magic-player';
 
 const Play = () => {
-  const [url, setUrl] = useState('https://img.tukuppt.com/video_show/2405179/00/02/35/5b56c8b31b1ad.mp4');
+  const [url, setUrl] = useState('http://47.102.40.185/assets/video.mp4');
   const [ref, setRef] = useState('');
   const [wsUrl, setWsUrl] = useState('');
   const [width, setWidth] = useState(700);

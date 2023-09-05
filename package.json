@@ -1,5 +1,5 @@
 {
-  "name": "magicPlayer",
+  "name": "magic-player",
   "version": "1.0.0",
   "description": "A Websocket player based on react",
   "module": "dist/index.js",
@@ -15,7 +15,8 @@
     "lint": "npm run lint:es && npm run lint:css",
     "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
     "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
-    "prepublishOnly": "father doctor && npm run build"
+    "prepublishOnly": "father doctor && npm run build",
+    "pub": "yarn build && yarn publish --registry=http://100.100.142.218:5081/repository/npm-hosted/"
   },
   "authors": [],
   "license": "MIT",
@@ -29,7 +30,7 @@
   },
   "lint-staged": {
     "*.{md,json}": [],
-    "*.{css,less}": [],
+    "*.{css,less}": [], 
     "*.{js,jsx}": [],
     "*.{ts,tsx}": []
   },
@@ -64,6 +65,7 @@
     "@types/lodash-es": "^4.17.8",
     "jquery": "^3.7.0",
     "lodash-es": "^4.17.21",
-    "moment": "^2.29.4"
+    "moment": "^2.29.4",
+    "copy-to-clipboard":"^3.3.1"
   }
 }
